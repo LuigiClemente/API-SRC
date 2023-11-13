@@ -251,70 +251,71 @@ For an enhanced user experience, consider incorporating the [Steps with Directio
 ```mermaid
 graph TD
   subgraph "Zammad Knowledge Base API"
-    A["HTTP GET Request"]
-    B["Zammad Server"]
-    C["KB Article Details"]
+    A[Retrieve KB Article]
+    B[Schema Issue]
+    C[Resolution]
+    D[Steps to Use]
+    A -->|HTTP GET| B
+    B -->|Add kb_locale_id attribute| C
+    C --> D
   end
 
   subgraph "ContentLayer Implementation"
-    D["Remote Files Source"]
-    E["Sync Content from Git"]
-    F["Local Content Folder"]
-    G["ContentLayer Processing"]
-    H["Document Types Definition"]
-    I["Sync Loop"]
-    J["Fetched Content"]
+    E[Remote Files Source]
+    F[Example Implementation]
+    G[ContentLayer Documentation]
   end
 
-  A -->|Retrieve KB Article| B
-  B -->|Returns Article Details| C
+  subgraph "Implementation Flow"
+    H[Zammad Provides KB API]
+    I[ContentLayer Loads KB Info]
+    J[Users Log In]
+    K[ContentLayer Fetches Synced Content]
+    L[Changes Occur?]
+    M[ContentLayer Updates Content]
+    N[No Changes]
+  end
 
-  D -->|Sync Content| E
-  E -->|Fetch from Git| F
-  F -->|Local Content| G
-  G -->|Content Processing| H
-  H -->|Document Types| I
-  I -->|Sync Loop| J
+  A -->|Error Response| B
+  B -->|Add Attribute| C
+  C -->|Updated Request| D
+  E -->|Syncs Content| F
+  F -->|Uses Git Repository| G
+  H -->|Retrieves Article Details| I
+  I -->|Handles Caching| J
+  J -->|Fetches Synced KB Content| K
+  K -->|Yes| L
+  L -->|Yes| M
+  M -->|No| N
+  N -->|End| K
 ```
 ### Zammad Knowledge Base API
 
 #### Retrieve KB Article
 
-* **Schema:** Knowledge Base API
-* **Expected Behavior:** Upon using an HTTP GET request to retrieve a KB article, it should receive the article details.
-* **Actual Behavior:** Sample response:
-    
-    ```json
-    {
-       "id": 3,
-       "group_id": 1,
-       "priority_id": 2,
-       "state_id": 4,
-       "organization_id": 3,
-       "number": "22003",
-       "title": "Order 787556",
-       "owner_id": 3,
-       "customer_id": 7,
-       // ... (other details)
-    }
-    ```
-    
-* **Steps to Use:**
-    
-    ```bash
-    curl -X GET https://your-zammad-instance/api/v1/tickets/{ticket_id} \
-      -H "Authorization: Bearer your_access_token"
-    ```
-    
-    [Zammad Documentation Link](https://community.zammad.org/t/solved-knowledge-base-api-create-article/9127)
+* **Schema Issue:** The provided error indicates a missing attribute in the schema: "Translations kb locale must exist."
+* **Resolution:** Add the `kb_locale_id` attribute inside the `translations_attributes`. The specified locale must be created on the server beforehand.
+
+#### Steps to Use:
+
+```bash
+curl --location --request POST 'https://your-zammad-instance/api/v1/knowledge_bases/1/answers' \
+--header 'Authorization: Token token=_____' \
+--header 'Content-Type: application/json' \
+--data-raw '{"category_id":"1","translations_attributes":[{"title":"test05 api", "id":"","content_attributes":{"body":"test05 api body"},"kb_locale_id": "your_locale_id"}]}'
+```
+
+* Ensure to replace `"your_locale_id"` with the actual locale ID created on the server.
+
+[Zammad Documentation Link](https://community.zammad.org/t/solved-knowledge-base-api-create-article/9127)
 
 ### ContentLayer Implementation
 
 #### Remote Files Source
 
-ContentLayer allows synchronization of content files from remote sources. In this case, a remote Git repository is used as an example.
+ContentLayer facilitates the synchronization of content files from remote sources. The provided example demonstrates the usage of a remote Git repository.
 
-##### Example Implementation
+##### Example Implementation:
 
 ```javascript
 import { defineDocumentType } from '@contentlayer/source-files'
@@ -377,5 +378,11 @@ For detailed information on ContentLayer's remote files source, visit the [Conte
 5. If no changes, nothing is fetched.
 
 This implementation ensures seamless integration between Zammad's KB API and ContentLayer for efficient content retrieval and delivery.
+
+* * *
+
+**You:**
+
+write mermaid js chart // for this // only implemetation // make it very nice
 
 * * *
