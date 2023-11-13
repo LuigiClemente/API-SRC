@@ -14,16 +14,6 @@ sequenceDiagram
   ZammadAPI->>EmailService: Send reset instructions
   EmailService-->>User: Password reset instructions sent to your email.
 ```
-# Zammad API Documentation
-
-## Introduction
-
-This documentation provides details on the Zammad API for user authentication and password recovery. The following endpoints are covered:
-
-* [Login](https://tw-elements.com/docs/react/forms/login-form): CSS for user login.
-* [Forgot Password](https://tailwindcomponents.com/component/sb-admin-2-forgot-password-page-1): CSS for initiating a password reset.
-
-For additional information and a comprehensive overview of the Zammad API, please refer to the [official documentation](https://docs.zammad.org/en/latest/api/user.html).
 
 ## Authentication
 
@@ -111,6 +101,9 @@ HTTP/1.1 200 OK
 ```
 
 **Note:** The provided samples were provided with admin and ticket.agent permissions. Some attributes/information may not be available in specific situations. Refer to the [Permission Guide](https://docs.zammad.org/en/latest/api/user.html) for more insights.
+
+* [Login](https://tw-elements.com/docs/react/forms/login-form): CSS for user login.
+* [Forgot Password](https://tailwindcomponents.com/component/sb-admin-2-forgot-password-page-1): CSS for initiating a password reset.
 
 * * *
 
