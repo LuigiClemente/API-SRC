@@ -244,7 +244,7 @@ Ensure the provided access token has the necessary permissions for the requests.
 
 ## Additional UI Components
 
-For an enhanced user experience, consider incorporating the [Steps with Directions](https://tailwindcomponents.com/component/steps-with-directions) component into your UI to visually represent the enrollment process.
+Library used but it has been reworked. [Steps with Directions](https://tailwindcomponents.com/component/steps-with-directions) component visually represent the enrollment process.
 
 * * *
 
