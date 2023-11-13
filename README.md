@@ -380,9 +380,3 @@ For detailed information on ContentLayer's remote files source, visit the [Conte
 This implementation ensures seamless integration between Zammad's KB API and ContentLayer for efficient content retrieval and delivery.
 
 * * *
-
-**You:**
-
-write mermaid js chart // for this // only implemetation // make it very nice
-
-* * *
