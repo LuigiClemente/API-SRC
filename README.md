@@ -163,7 +163,7 @@ Zammad provides a comprehensive API for managing tickets, including details retr
 
 * [Tickets API](https://docs.zammad.org/en/latest/api/ticket/index.html?highlight=tickets): Endpoint for interacting with tickets.
 
-For detailed information and additional endpoints, please refer to the [official documentation](https://docs.zammad.org/en/latest/api/ticket/index.html?highlight=tickets).
+For detailed information and additional endpoints, please refer to the [official documentation](https://user-docs.zammad.org/en/latest/basics/what-is-a-ticket.html#).
 
 ## Ticket Groups and Enrollment
 
