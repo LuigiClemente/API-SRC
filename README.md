@@ -19,86 +19,265 @@ sequenceDiagram
 
 Both the Login and Forgot Password endpoints require authentication. The current user can access their information through a GET request to the `/api/v1/users/me` endpoint.
 
-### GET /api/v1/users/me
+Current User > Web
 
-#### Request
+`#{user.web}`
 
-```bash
-curl -X GET https://your-zammad-instance/api/v1/users/me
-```
+`https://zammad.org` or empty if not set
 
-#### Response
+Current User > VIP
 
-```json
-HTTP/1.1 200 OK
+`#{user.vip}`
 
-{
-   "id": 3,
-   "organization_id": 2,
-   "login": "chris@chrispresso.com",
-   "firstname": "Christopher",
-   "lastname": "Miller",
-   "email": "chris@chrispresso.com",
-   "image": "7a6a0d1d94ad2037153cf3a6c1b49a53",
-   "image_source": null,
-   "web": "",
-   "phone": "",
-   "fax": "",
-   "mobile": "",
-   "department": null,
-   "street": ""
-}
-```
+`false` or `true`
 
-## User Login
+Current User > Updated by > Web
 
-### POST /api/v1/signin
+`#{user.updated_by.web}`
 
-#### Request
+`https://zammad.org` or empty if not set
 
-```bash
-curl -X POST https://your-zammad-instance/api/v1/signin \
-  -H "Content-Type: application/json" \
-  -d '{
-    "login": "chris@chrispresso.com",
-    "password": "your_password"
-  }'
-```
+Current User > Updated by > VIP
 
-#### Response
+`#{user.updated_by.vip}`
 
-```json
-HTTP/1.1 200 OK
+`false` or `true`
 
-{
-   "token": "your_access_token",
-   "expires_at": "expiration_timestamp"
-}
-```
+Current User > Updated by > Phone
 
-## Forgot Password
+`#{user.updated_by.phone}`
 
-### POST /api/v1/forgot_password
+`004930123456789` or empty if not set
 
-#### Request
+Current User > Updated by > Note
 
-```bash
-curl -X POST https://your-zammad-instance/api/v1/forgot_password \
-  -H "Content-Type: application/json" \
-  -d '{
-    "login": "chris@chrispresso.com"
-  }'
-```
+`#{user.updated_by.note}`
 
-#### Response
+`Some note to this user` or empty if not set
 
-```json
-HTTP/1.1 200 OK
+Current User > Updated by > Mobile
 
-{
-   "message": "Password reset instructions sent to your email."
-}
-```
+`#{user.updated_by.mobile}`
+
+`0049176123456789` or empty if not set
+
+Current User > Updated by > Login
+
+`#{user.updated_by.login}`
+
+`jdoe`
+
+Current User > Updated by > Lastname
+
+`#{user.updated_by.lastname}`
+
+`Doe` or empty if not set
+
+Current User > Updated by > Firstname
+
+`#{user.updated_by.firstname}`
+
+`John` or empty if not set
+
+Current User > Updated by > Fax
+
+`#{user.updated_by.fax}`
+
+`004930123464789` or empty if not set
+
+Current User > Updated by > Email
+
+`#{user.updated_by.email}`
+
+`jdoe@customer.tld`
+
+Current User > Updated by > Department
+
+`#{user.updated_by.department}`
+
+`Sales` or empty if not set
+
+Current User > Updated by > Address
+
+`#{user.updated_by.address}`
+
+`Some street 1, 12345 Berlin` or empty if not set
+
+Current User > Updated at
+
+`#{user.updated_at}`
+
+`2019-10-07 16:25:00 UTC`
+
+Current User > Phone
+
+`#{user.phone}`
+
+`004930123456789` or empty if not set
+
+Current User > Organization > Shared organization
+
+`#{user.organization.shared}`
+
+`true` or `false`
+
+Current User > Organization > Note
+
+`#{user.organization.note}`
+
+`A note to the organization of the user` or empty if not set
+
+Current User > Organization > Name
+
+`#{user.organization.name}`
+
+Current User > Organization > Domain based assignment
+
+`#{user.organization.domain_assignment}`
+
+Current User > Organization > Domain
+
+`#{user.organization.domain}`
+
+`Zammad GmbH` or empty if not set
+
+Current User > Organization > VIP
+
+`#{user.organization.vip}`
+
+`true` or `false`
+
+Current User > Note
+
+`#{user.note}`
+
+`Some note to this user` or empty if not set
+
+Current User > Mobile
+
+`#{user.mobile}`
+
+`0049176123456789` or empty if not set
+
+Current User > Login
+
+`#{user.login}`
+
+`jdoe`
+
+Current User > Lastname
+
+`#{user.lastname}`
+
+`Doe` or empty if not set
+
+Current User > Firstname
+
+`#{user.firstname}`
+
+`John` or empty if not set
+
+Current User > Fax
+
+`#{user.fax}`
+
+`004930123464789` or empty if not set
+
+Current User > Email
+
+`#{user.email}`
+
+`jdoe@customer.tld`
+
+Current User > Department
+
+`#{user.department}`
+
+`Sales` or empty if not set
+
+Current User > Created by > Web
+
+`#{user.created_by.web}`
+
+`https://zammad.org` or empty if not set
+
+Current User > Created by > VIP
+
+`#{user.created_by.vip}`
+
+`true` or `false`
+
+Current User > Created by > Phone
+
+`#{user.created_by.phone}`
+
+`004930123456789` or empty if not set
+
+Current User > Created by > Note
+
+`#{user.created_by.note}`
+
+`Some note to this user` or empty if not set
+
+Current User > Created by > Mobile
+
+`#{user.created_by.mobile}`
+
+`0049176123456789` or empty if not set
+
+Current User > Created by > Login
+
+`#{user.created_by.login}`
+
+`jdoe`
+
+Current User > Created by > Lastname
+
+`#{user.created_by.lastname}`
+
+`Doe` or empty if not set
+
+Current User > Created by > Firstname
+
+`#{user.created_by.firstname}`
+
+`John` or empty if not set
+
+Current User > Created by > Fax
+
+`#{user.created_by.fax}`
+
+`004930123464789` or empty if not set
+
+Current User > Created by > Email
+
+`#{user.created_by.email}`
+
+`jdoe@customer.tld`
+
+Current User > Created by > Department
+
+`#{user.created_by.department}`
+
+`Sales` or empty if not set
+
+Current User > Created by > Address
+
+`#{user.created_by.address}`
+
+`Some street 1, 12345 Berlin` or empty if not set
+
+Current User > Created at
+
+`#{user.created_at}`
+
+`2019-10-07 16:25:00 UTC`
+
+Current User > Address
+
+`#{user.address}`
+
+`Some street 1, 12345 Berlin` or empty if not set
 
 **Note:** The provided samples were provided with admin and ticket.agent permissions. Some attributes/information may not be available in specific situations. Refer to the [Permission Guide](https://docs.zammad.org/en/latest/api/user.html) for more insights.
 
