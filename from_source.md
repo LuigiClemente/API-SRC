@@ -72,8 +72,3 @@ gem install rails
 ```bash
 export PATH="$HOME/.rbenv/shims:$PATH"
 ```
-
-
-```bash
-sudo apt-get install -y nodejs
-```
